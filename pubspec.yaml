@@ -1,0 +1,65 @@
+name: mytravelapp
+description: A new Flutter project.
+version: 1.0.0+1
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+dependencies:
+  # backendless_sdk: ^7.2.3
+  cached_network_image: ^3.2.1
+  # firebase_core: ^2.7.0
+  # firebase_crashlytics: ^3.0.15
+  cloud_firestore: ^4.5.0
+  firebase_auth: ^4.4.0
+  firebase_core: ^2.9.0
+  firebase_storage: ^11.1.0
+  flutter:
+    sdk: flutter
+  flutter_native_splash: ^2.2.17
+  flutter_svg: ^1.1.6
+  flutter_svg_provider: ^1.0.3
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
+  get: 4.6.5
+  images_picker: ^1.2.11
+  intl: ^0.17.0
+  permission_handler: ^10.0.0
+  shared_preferences: ^2.0.15
+  smooth_page_indicator: ^1.0.0+2
+  url_launcher: ^6.1.10
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash/splash.png
+  web: false
+  ios: false
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/PoppinsLight.ttf
+          weight: 300
+        - asset: assets/fonts/PoppinsSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PoppinsRegular.ttf
+          weight: 400
+        - asset: assets/fonts/PoppinsMedium.ttf
+          weight: 500
+        - asset: assets/fonts/PoppinsBold.ttf
+          weight: 700
+    - family: Red Hat Display
+      fonts:
+        - asset: assets/fonts/RedHatDisplayRegular.ttf
+          weight: 400
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/RobotoRegular.ttf
+          weight: 400

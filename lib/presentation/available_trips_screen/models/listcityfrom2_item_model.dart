@@ -1,0 +1,1 @@
+class Listcityfrom2ItemModel {}
