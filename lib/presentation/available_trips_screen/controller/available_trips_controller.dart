@@ -8,7 +8,7 @@ import 'package:mytravelapp/data/models/flight_model.dart';
 import 'package:mytravelapp/presentation/available_trips_screen/models/itineraries.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum FilterType { price, duration, additionalStops }
+enum FilterType { price, duration, additionalStops, quality }
 
 class AvailableTripsController extends GetxController {
   List<List<FlightModel>> searchResult = [];
@@ -34,7 +34,9 @@ class AvailableTripsController extends GetxController {
       'fly_to': query['toIATA'],
       'date_from': DateFormat('yyyy-MM-dd').format(query['departureDate']),
       'date_to': DateFormat('yyyy-MM-dd').format(query['departureDate']),
-      'adults': query['pessengerCount'].toString(),
+      'adults': query['adultCount'].toString(),
+      'children': query['childCount'].toString(),
+      'infants': query['infantCount'].toString(),
       'curr': currency,
       'selected_cabins': query['carbinClass'],
     };
@@ -64,6 +66,7 @@ class AvailableTripsController extends GetxController {
         jsonDecode(response.body)['data'].forEach((v) {
           flightList.add(new FlightModel.fromJson(v));
         });
+        flightList.sort((a, b) => a.quality!.compareTo(b.quality!));
         searchResult.add(
             flightList.where((element) => element.deepLink != null).toList());
       } catch (e) {
@@ -89,7 +92,7 @@ class AvailableTripsController extends GetxController {
   //   };
 
   //   final params = {
-  //     'adults': query['pessengerCount'].toString(),
+  //     'adults': query['adultCount'].toString(),
   //     'origin': query['fromIATA'],
   //     'destination': query['toIATA'],
   //     'departureDate': DateFormat('yyyy-MM-dd').format(query['departureDate']),

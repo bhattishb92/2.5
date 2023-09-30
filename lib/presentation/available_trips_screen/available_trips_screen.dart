@@ -22,7 +22,7 @@ class AvailableTripsScreen extends GetWidget<AvailableTripsController> {
     controller.searchResult.clear();
     if (controller.isMultiCity) {
       for (int i = 0; i < length; i++) {
-        // for multi city
+        // for multi city search
         await controller.search({
           "fromIATA": _multiCityController.fromIATA[i],
           "toIATA": _multiCityController.toITAT[i],
@@ -30,7 +30,9 @@ class AvailableTripsScreen extends GetWidget<AvailableTripsController> {
           "month": _multiCityController.selectedDate[i].month,
           "year": _multiCityController.selectedDate[i].year,
           "departureDate": _multiCityController.selectedDate[i],
-          "pessengerCount": _multiCityController.pessengerCount[i],
+          "adultCount": _multiCityController.adultCount[i],
+          "childCount": _multiCityController.childCount[i],
+          "infantCount": _multiCityController.infantCount[i],
           "carbinClass": _multiCityController.carbinClass[i],
         });
       }
@@ -42,7 +44,9 @@ class AvailableTripsScreen extends GetWidget<AvailableTripsController> {
         "month": _oneWayController.selectedDate.month,
         "year": _oneWayController.selectedDate.year,
         "departureDate": _oneWayController.selectedDate,
-        "pessengerCount": _oneWayController.pessengerCount,
+        "adultCount": _oneWayController.adultCount,
+        "childCount": _oneWayController.childCount,
+        "infantCount": _oneWayController.infantCount,
         "index": _oneWayController.tabIndex,
         "date_2": _oneWayController.selectedDate2.day,
         "month_2": _oneWayController.selectedDate2.month,
@@ -90,6 +94,10 @@ class AvailableTripsScreen extends GetWidget<AvailableTripsController> {
                   child: Text("By Stops"),
                   value: FilterType.additionalStops,
                 ),
+                PopupMenuItem(
+                  child: Text("By Quality"),
+                  value: FilterType.quality,
+                ),
               ];
             },
           )
@@ -119,18 +127,38 @@ class AvailableTripsScreen extends GetWidget<AvailableTripsController> {
                   itemBuilder: (context, i) {
                     List<FlightModel> results = [];
                     results.addAll(controller.searchResult[i] ?? []);
-                    // if (controller.filterType == FilterType.price) {
-                    //   results.sort((a, b) =>
-                    //       (a.pricingOptions![0].price!.amount ?? 0).compareTo(
-                    //           (b.pricingOptions![0].price!.amount ?? 0)));
-                    // }
-                    // if (controller.filterType == FilterType.duration) {
-                    //   results.sort((a, b) => (a.legs![0].durationInMinutes ?? 0)
-                    //       .compareTo((b.legs![0].durationInMinutes ?? 0)));
-                    // }
+                    if (controller.filterType == FilterType.price) {
+                      results.sort(
+                          (a, b) => (a.price ?? 0).compareTo((b.price ?? 0)));
+                    }
+                    if (controller.filterType == FilterType.duration) {
+                      results.sort((a, b) {
+                        final aDuration = a.utcArrival != null &&
+                                a.utcDeparture != null
+                            ? Duration(
+                                minutes: DateTime.parse(a.utcArrival!)
+                                    .difference(DateTime.parse(a.utcDeparture!))
+                                    .inMinutes,
+                              )
+                            : Duration.zero;
+                        final bDuration = b.utcArrival != null &&
+                                b.utcDeparture != null
+                            ? Duration(
+                                minutes: DateTime.parse(b.utcArrival!)
+                                    .difference(DateTime.parse(b.utcDeparture!))
+                                    .inMinutes,
+                              )
+                            : Duration.zero;
+                        return aDuration.compareTo(bDuration);
+                      });
+                    }
                     if (controller.filterType == FilterType.additionalStops) {
                       results.sort((a, b) =>
                           (a.pnrCount ?? 0).compareTo((b.pnrCount ?? 0)));
+                    }
+                    if (controller.filterType == FilterType.quality) {
+                      results.sort((a, b) =>
+                          (a.quality ?? 0).compareTo((b.quality ?? 0)));
                     }
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,

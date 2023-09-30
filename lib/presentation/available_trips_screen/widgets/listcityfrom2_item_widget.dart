@@ -298,7 +298,7 @@ class flightDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       String? adult =
-          Get.find<FlightBookOnewayOneController>().pessengerCount.toString();
+          Get.find<FlightBookOnewayOneController>().adultCount.toString();
       fareType = Get.find<FlightBookOnewayOneController>().fClass;
 
       return SingleChildScrollView(
@@ -369,6 +369,55 @@ class flightDetails extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            availResult.cityFrom!,
+                                            style: AppStyle.txtPoppinsMedium16
+                                                .copyWith(color: Colors.black),
+                                          ),
+                                          Icon(
+                                            Icons.arrow_forward_sharp,
+                                            size: 20,
+                                          ),
+                                          Text(
+                                            availResult.cityTo!,
+                                            style: AppStyle.txtPoppinsMedium16
+                                                .copyWith(color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.access_time,
+                                            size: 18,
+                                          ),
+                                          Text(
+                                            formatDurationInHhMmSs(
+                                              Duration(
+                                                minutes: int.parse(
+                                                    DateTime.parse(availResult
+                                                            .utcArrival!)
+                                                        .difference(
+                                                          DateTime.parse(
+                                                              availResult
+                                                                  .utcDeparture!),
+                                                        )
+                                                        .inMinutes
+                                                        .toString()),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Divider(thickness: 2, height: 30),
                                   layOverContainer(availResult.route!),
                                 ],
                               ),
@@ -522,7 +571,41 @@ class flightDetails extends StatelessWidget {
               DetailsList(
                 title: "Fare Type:",
                 trailer: fareType ?? "",
-              )
+              ),
+              //add layover time
+              if (index + 1 < segments.length)
+                Column(
+                  children: [
+                    Divider(
+                      thickness: 2,
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.access_time,
+                          size: 18,
+                        ),
+                        Text(
+                          formatDurationInHhMmSs(
+                                Duration(
+                                  minutes: int.parse(DateTime.parse(
+                                          segments[index + 1].utcDeparture!)
+                                      .difference(
+                                        DateTime.parse(
+                                            segments[index].utcArrival!),
+                                      )
+                                      .inMinutes
+                                      .toString()),
+                                ),
+                              ) +
+                              " Layover",
+                        ),
+                      ],
+                    ),
+                  ],
+                )
             ],
           );
         });

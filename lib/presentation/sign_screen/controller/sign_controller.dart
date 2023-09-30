@@ -23,6 +23,8 @@ class SignController extends GetxController {
         .then((value) {
       isLoading = false;
       update();
+      emailController.clear();
+      passController.clear();
       Get.snackbar("Login successful", "",
           padding: EdgeInsets.only(top: 20, left: 10, right: 10));
       Get.toNamed(AppRoutes.homeScreen, preventDuplicates: true);

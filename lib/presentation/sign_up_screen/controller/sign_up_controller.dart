@@ -25,6 +25,8 @@ class SignUpController extends GetxController {
       await value.user!.updateDisplayName(nameController.value.text);
       await value.user!.updatePhotoURL("");
       await value.user!.sendEmailVerification();
+      emailController.clear();
+      passwordController.clear();
       Get.snackbar("Account created successfully", "",
           backgroundColor: ColorConstant.deepPurple300.withOpacity(0.2),
           padding: EdgeInsets.only(top: 20, left: 10, right: 10));

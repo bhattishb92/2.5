@@ -35,6 +35,293 @@ class FlightBookOnewayOnePage extends GetWidget {
     }
   }
 
+  Future<void> editTravelersDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: getPadding(all: 0),
+          title: Text(
+            'Edit Travelers',
+            style: AppStyle.txtPoppinsSemiBold24Bluegray700,
+          ),
+          content: GetBuilder<FlightBookOnewayOneController>(
+              builder: (flightController) {
+            return Container(
+              width: size.width,
+              height: size.height * 0.26,
+              child: Column(
+                children: [
+                  Container(
+                    padding: getPadding(all: 16),
+                    decoration: AppDecoration.fillGray100.copyWith(
+                      color: Colors.white,
+                      borderRadius: BorderRadiusStyle.roundedBorder10,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Adults",
+                              style: AppStyle.txtPoppinsSemiBold16Gray900,
+                            ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.adultCount > 1) {
+                                      controller.adultCount--;
+                                      controller.update();
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: ColorConstant.whiteA700,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: ColorConstant.deepPurple300,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "-",
+                                        style: TextStyle(
+                                          color: ColorConstant.deepPurple300,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  "${controller.adultCount}",
+                                  style: AppStyle.txtPoppinsSemiBold16Gray900,
+                                ),
+                                SizedBox(width: 10),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.adultCount < 5) {
+                                      controller.adultCount++;
+                                      controller.update();
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: ColorConstant.whiteA700,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: ColorConstant.deepPurple300,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "+",
+                                        style: TextStyle(
+                                          color: ColorConstant.deepPurple300,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Children",
+                              style: AppStyle.txtPoppinsSemiBold16Gray900,
+                            ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.childCount > 0) {
+                                      controller.childCount--;
+                                      controller.update();
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: ColorConstant.whiteA700,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: ColorConstant.deepPurple300,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "-",
+                                        style: TextStyle(
+                                          color: ColorConstant.deepPurple300,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  "${controller.childCount}",
+                                  style: AppStyle.txtPoppinsSemiBold16Gray900,
+                                ),
+                                SizedBox(width: 10),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.childCount < 5) {
+                                      controller.childCount++;
+                                      controller.update();
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: ColorConstant.whiteA700,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: ColorConstant.deepPurple300,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "+",
+                                        style: TextStyle(
+                                          color: ColorConstant.deepPurple300,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Infants",
+                              style: AppStyle.txtPoppinsSemiBold16Gray900,
+                            ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.infantCount > 0) {
+                                      controller.infantCount--;
+                                      controller.update();
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: ColorConstant.whiteA700,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: ColorConstant.deepPurple300,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "-",
+                                        style: TextStyle(
+                                          color: ColorConstant.deepPurple300,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  "${controller.infantCount}",
+                                  style: AppStyle.txtPoppinsSemiBold16Gray900,
+                                ),
+                                SizedBox(width: 10),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.infantCount < 5) {
+                                      controller.infantCount++;
+                                      controller.update();
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: ColorConstant.whiteA700,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: ColorConstant.deepPurple300,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "+",
+                                        style: TextStyle(
+                                          color: ColorConstant.deepPurple300,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.update();
+                              Get.back();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                "Apply",
+                                style: TextStyle(
+                                  color: ColorConstant.deepPurple300,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,6 +329,7 @@ class FlightBookOnewayOnePage extends GetWidget {
             backgroundColor: Colors.transparent,
             body: SizedBox(
                 width: size.width,
+                height: size.height,
                 child: SingleChildScrollView(
                     child: GetBuilder(
                         init: controller,
@@ -63,7 +351,6 @@ class FlightBookOnewayOnePage extends GetWidget {
                                             borderRadius: BorderRadiusStyle
                                                 .roundedBorder10),
                                     child: Column(
-                                        mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         mainAxisAlignment:
@@ -148,46 +435,25 @@ class FlightBookOnewayOnePage extends GetWidget {
                                             ],
                                           ),
                                           Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
-                                                child: PopupMenuButton(
-                                                    // position: PopupMenuPosition.under,
-                                                    // clipBehavior: Clip.hardEdge,
-                                                    child: BookingForm(
-                                                      title: "PASSENGER",
-                                                      value:
-                                                          "${controller.pessengerCount} ${controller.pessengerType}",
-                                                      endicon: Icon(
-                                                          Icons.expand_more),
-                                                    ),
-                                                    onSelected: (value) {
-                                                      controller
-                                                          .updatePes(value);
-                                                    },
-                                                    itemBuilder: (context) => [
-                                                          PopupMenuItem(
-                                                            child: Text("1"
-                                                                .capitalize!),
-                                                            value: 0,
-                                                          ),
-                                                          PopupMenuItem(
-                                                            child: Text("2"
-                                                                .capitalize!),
-                                                            value: 1,
-                                                          ),
-                                                          PopupMenuItem(
-                                                            child: Text("3"
-                                                                .capitalize!),
-                                                            value: 2,
-                                                          ),
-                                                          PopupMenuItem(
-                                                            child: Text("4"
-                                                                .capitalize!),
-                                                            value: 3,
-                                                          ),
-                                                        ]),
+                                                child: BookingForm(
+                                                  title: "Travelers",
+                                                  value:
+                                                      "${controller.adultCount > 1 ? controller.adultCount.toString() + " Adults" : controller.adultCount.toString() + " Adult"}${controller.childCount > 1 ? ", " + controller.childCount.toString() + " Children" : controller.childCount == 0 ? "" : ", " + controller.childCount.toString() + " Child"}${controller.infantCount > 1 ? ", " + controller.infantCount.toString() + " Infants" : controller.infantCount == 0 ? "" : ", " + controller.infantCount.toString() + " Infant"}",
+                                                  icon: Icon(Icons.person),
+                                                  onTap: () {
+                                                    editTravelersDialog(
+                                                        context);
+                                                  },
+                                                ),
                                               ),
-                                              SizedBox(width: 10),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
                                               Expanded(
                                                 child: PopupMenuButton(
                                                     // position: PopupMenuPosition.under,
@@ -228,6 +494,106 @@ class FlightBookOnewayOnePage extends GetWidget {
                                               ),
                                             ],
                                           ),
+
+                                          // PopupMenuButton(
+                                          //   // position: PopupMenuPosition.under,
+                                          //   // clipBehavior: Clip.hardEdge,
+                                          //   child: BookingForm(
+                                          //     title: "Adults",
+                                          //     value: "${controller.adultCount}",
+                                          //     endicon: Icon(Icons.expand_more),
+                                          //   ),
+                                          //   onSelected: (value) {
+                                          //     controller.updatePes(value);
+                                          //   },
+                                          //   itemBuilder: (context) => [
+                                          //     PopupMenuItem(
+                                          //       child: Text("1".capitalize!),
+                                          //       value: 1,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("2".capitalize!),
+                                          //       value: 2,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("3".capitalize!),
+                                          //       value: 3,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("4".capitalize!),
+                                          //       value: 4,
+                                          //     ),
+                                          //   ],
+                                          // ),
+                                          // PopupMenuButton(
+                                          //   // position: PopupMenuPosition.under,
+                                          //   // clipBehavior: Clip.hardEdge,
+                                          //   child: BookingForm(
+                                          //     title: "Children",
+                                          //     value: "${controller.childCount}",
+                                          //     endicon: Icon(Icons.expand_more),
+                                          //   ),
+                                          //   onSelected: (value) {
+                                          //     controller.updatePes(value);
+                                          //   },
+                                          //   itemBuilder: (context) => [
+                                          //     PopupMenuItem(
+                                          //       child: Text("0".capitalize!),
+                                          //       value: 0,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("1".capitalize!),
+                                          //       value: 1,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("2".capitalize!),
+                                          //       value: 2,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("3".capitalize!),
+                                          //       value: 3,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("4".capitalize!),
+                                          //       value: 4,
+                                          //     ),
+                                          //   ],
+                                          // ),
+                                          // PopupMenuButton(
+                                          //   // position: PopupMenuPosition.under,
+                                          //   // clipBehavior: Clip.hardEdge,
+                                          //   child: BookingForm(
+                                          //     title: "Infants",
+                                          //     value:
+                                          //         "${controller.infantCount}",
+                                          //     endicon: Icon(Icons.expand_more),
+                                          //   ),
+                                          //   onSelected: (value) {
+                                          //     controller.updatePes(value);
+                                          //   },
+                                          //   itemBuilder: (context) => [
+                                          //     PopupMenuItem(
+                                          //       child: Text("0".capitalize!),
+                                          //       value: 0,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("1".capitalize!),
+                                          //       value: 1,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("2".capitalize!),
+                                          //       value: 2,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("3".capitalize!),
+                                          //       value: 3,
+                                          //     ),
+                                          //     PopupMenuItem(
+                                          //       child: Text("4".capitalize!),
+                                          //       value: 4,
+                                          //     ),
+                                          //   ],
+                                          // ),
                                           Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -249,7 +615,7 @@ class FlightBookOnewayOnePage extends GetWidget {
                                                       text: "lbl_continue".tr,
                                                       onTap: onTapContinue),
                                                 )
-                                              ])
+                                              ]),
                                         ]))
                               ]);
                         })))));

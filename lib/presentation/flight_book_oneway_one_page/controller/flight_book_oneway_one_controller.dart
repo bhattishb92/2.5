@@ -6,7 +6,9 @@ class FlightBookOnewayOneController extends GetxController {
   String? fromIATA;
   String? toITAT;
   String? pessengerType = "Traveller";
-  int pessengerCount = 1;
+  int adultCount = 1;
+  int childCount = 0;
+  int infantCount = 0;
   String? fClass = "Economy";
   int tabIndex = 0;
   DateTime selectedDate = DateTime.now();
@@ -42,8 +44,8 @@ class FlightBookOnewayOneController extends GetxController {
   }
 
   updatePes(value) {
-    this.pessengerCount = value + 1;
-    if (pessengerCount > 1) {
+    this.adultCount = value + 1;
+    if (adultCount > 1) {
       this.pessengerType = "Travellers";
     } else {
       this.pessengerType = "Traveller";
