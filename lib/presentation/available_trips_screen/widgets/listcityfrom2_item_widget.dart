@@ -67,9 +67,9 @@ class Listcityfrom2ItemWidget extends StatelessWidget {
                 child: Text(
                   formatDurationInHhMmSs(
                     Duration(
-                      minutes: int.parse(DateTime.parse(availResult.utcArrival!)
+                      minutes: int.parse(DateTime.parse(availResult.localArrival!)
                           .difference(
-                            DateTime.parse(availResult.utcDeparture!),
+                            DateTime.parse(availResult.localDeparture!),
                           )
                           .inMinutes
                           .toString()),
@@ -171,7 +171,7 @@ class Listcityfrom2ItemWidget extends StatelessWidget {
                       Text(
                         DateFormat("dd MMM hh:mm a").format(
                           DateTime.parse(
-                            availResult.utcDeparture!,
+                            availResult.localDeparture!,
                           ),
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -181,7 +181,7 @@ class Listcityfrom2ItemWidget extends StatelessWidget {
                       Text(
                         DateFormat("dd MMM hh:mm a").format(
                           DateTime.parse(
-                            availResult.utcArrival!,
+                            availResult.localArrival!,
                           ),
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -402,11 +402,11 @@ class flightDetails extends StatelessWidget {
                                               Duration(
                                                 minutes: int.parse(
                                                     DateTime.parse(availResult
-                                                            .utcArrival!)
+                                                            .localArrival!)
                                                         .difference(
                                                           DateTime.parse(
                                                               availResult
-                                                                  .utcDeparture!),
+                                                                  .localDeparture!),
                                                         )
                                                         .inMinutes
                                                         .toString()),
@@ -544,7 +544,7 @@ class flightDetails extends StatelessWidget {
               DetailsList(
                   title: "Departure Date:",
                   trailer: DateFormat("d MMM hh:mm a").format(
-                    DateTime.tryParse(segments[index].utcDeparture!)!,
+                    DateTime.tryParse(segments[index].localDeparture!)!,
                   )),
               // _controller.tabIndex == 0
               //     ? SizedBox()
@@ -553,15 +553,15 @@ class flightDetails extends StatelessWidget {
               DetailsList(
                   title: "Arrival Date:",
                   trailer: DateFormat("d MMM hh:mm a")
-                      .format(DateTime.tryParse(segments[index].utcArrival!)!)),
+                      .format(DateTime.tryParse(segments[index].localArrival!)!)),
               DetailsList(
                 title: "Flight Duration:",
                 trailer: formatDurationInHhMmSs(
                   Duration(
                     minutes:
-                        int.parse(DateTime.parse(segments[index].utcArrival!)
+                        int.parse(DateTime.parse(segments[index].localArrival!)
                             .difference(
-                              DateTime.parse(segments[index].utcDeparture!),
+                              DateTime.parse(segments[index].localDeparture!),
                             )
                             .inMinutes
                             .toString()),
@@ -591,10 +591,10 @@ class flightDetails extends StatelessWidget {
                           formatDurationInHhMmSs(
                                 Duration(
                                   minutes: int.parse(DateTime.parse(
-                                          segments[index + 1].utcDeparture!)
+                                          segments[index + 1].localDeparture!)
                                       .difference(
                                         DateTime.parse(
-                                            segments[index].utcArrival!),
+                                            segments[index].localArrival!),
                                       )
                                       .inMinutes
                                       .toString()),

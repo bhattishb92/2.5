@@ -133,22 +133,24 @@ class AvailableTripsScreen extends GetWidget<AvailableTripsController> {
                     }
                     if (controller.filterType == FilterType.duration) {
                       results.sort((a, b) {
-                        final aDuration = a.utcArrival != null &&
-                                a.utcDeparture != null
-                            ? Duration(
-                                minutes: DateTime.parse(a.utcArrival!)
-                                    .difference(DateTime.parse(a.utcDeparture!))
-                                    .inMinutes,
-                              )
-                            : Duration.zero;
-                        final bDuration = b.utcArrival != null &&
-                                b.utcDeparture != null
-                            ? Duration(
-                                minutes: DateTime.parse(b.utcArrival!)
-                                    .difference(DateTime.parse(b.utcDeparture!))
-                                    .inMinutes,
-                              )
-                            : Duration.zero;
+                        final aDuration =
+                            a.localArrival != null && a.localDeparture != null
+                                ? Duration(
+                                    minutes: DateTime.parse(a.localArrival!)
+                                        .difference(
+                                            DateTime.parse(a.localDeparture!))
+                                        .inMinutes,
+                                  )
+                                : Duration.zero;
+                        final bDuration =
+                            b.localArrival != null && b.localDeparture != null
+                                ? Duration(
+                                    minutes: DateTime.parse(b.localArrival!)
+                                        .difference(
+                                            DateTime.parse(b.localDeparture!))
+                                        .inMinutes,
+                                  )
+                                : Duration.zero;
                         return aDuration.compareTo(bDuration);
                       });
                     }

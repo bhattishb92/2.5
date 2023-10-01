@@ -66,7 +66,7 @@ class AvailableTripsController extends GetxController {
         jsonDecode(response.body)['data'].forEach((v) {
           flightList.add(new FlightModel.fromJson(v));
         });
-        flightList.sort((a, b) => a.quality!.compareTo(b.quality!));
+        // flightList.sort((a, b) => a.quality!.compareTo(b.quality!));
         searchResult.add(
             flightList.where((element) => element.deepLink != null).toList());
       } catch (e) {

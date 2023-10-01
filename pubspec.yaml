@@ -1,5 +1,5 @@
 name: mytravelapp
-description: A new Flutter project.
+description: A New Flutter project.
 version: 1.0.0+1
 environment:
   sdk: ">=2.12.0 <3.0.0"
